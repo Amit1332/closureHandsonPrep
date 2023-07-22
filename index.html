@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure</title>
+</head>
+<style>
+*{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        padding: 10px;
+        background-color: rgb(31, 31, 32);
+        color: white;
+        font-family: sans-serif;
+    }
+
+    h4{
+        font-size: 22px;
+        color: rgb(149, 5, 5);
+        
+    }
+    h6{
+        font-size: 20px;
+        color: rgb(157, 157, 248);
+    }
+
+    pre{
+        background-color: white;
+        color: orangered;
+        padding: 10px;
+        font-size: 18px;
+
+        margin-top: 20px;
+    }
+</style>
+<body>
+
+    <h4>Question 1 - 
+<pre>
+ function counter(){
+  var counter = 0;
+    
+function IncreaseCounter() {
+   return counter += 1;
+  };
+    
+  return IncreaseCounter;
+}
+    
+    var counter = counter();
+    alert(counter());
+    alert(counter());
+    alert(counter());
+    alert(counter());"
+</pre>
+</h4>
+<br>
+<h6>
+    output - 1 2 3 4 
+    <br>
+  Ans -  in this code we make a counter function and itnitialization and declaration of the variable counter 
+    in the scope of counter function and another function make inside the scope of counter and then return that function. 
+     when we call the counter function  it execute line by line but in increamentCounter function has no variable in their scope 
+     but it takes from the parent scope or closet variable counter then this mechanis, known as closure  and increamet the
+      variable value on calling again and again counter function.
+
+</h6>
+    
+ <br>
+<h4>Question 2 - 
+<pre>
+ let count = 0;
+(function () {
+if (count === 0) {`
+let count = 1;
+console.log(count); // What is logged?
+  }
+console.log(count); // What is logged?
+})();
+</pre>
+</h4>
+<br>
+<h6> Output - 1 0
+    <br>
+    Ans - in this code we write an IIFE(Immedidate Invoke Function Execution)or self invoking function it will work same as normal function
+    itnitialization and declarationof count in global as well as block scope of if but first console will find count
+    in their if block scope and then print 1 but second console outer from if block scope so it will take global variabe count =0 
+    and print 0
+</h6>
+
+<br>
+
+<h4>Question 3 - 
+    <pre>
+for (var i = 0; i < 3; i++) {
+setTimeout(function log() {
+ console.log(i); // What is logged?
+ }, 1000);
+}
+    </pre>
+</h4>
+<br>
+<h6>output - 3 3 3
+    <br>
+    in this code var is hoisted and it will be in top when for loop will execute from 0 and wait a 1 sec then this i will 
+    increase and will be 3 and again will check until less than 3 and will print 3 3 3
+</h6>
+
+<br>
+
+<h4>Question 4 - Write a code to calculate area of a rectangle using inner function. In this case outer function should accept parameter length and inner function should accept parameter breadth.</h4>
+<h6>
+    <pre>
+ function outer(length){
+  return function inner(breadth){
+ console.log(`Areaof Rectangle = ${length*breadth}`)
+  }
+ }
+          
+ outer(4)(3)
+          
+          
+    </pre>
+</h6>
+
+
+<br>
+
+<h4>Question 5 - Take a variable in outer function and create an inner function to increase the counter every time it is called</h4>
+<h6>output- 1 2 3 4 5 6 7 .....
+
+    <pre>
+ function outer(){
+ var counter=0
+return function inner(){
+setInterval(()=>{
+ console.log(counter)
+  },1000)
+ }
+ }
+outer()()
+
+    </pre>
+</h6>
+
+
+<h4>Question 6 - 
+    <pre>
+"Print Output
+
+var a = 12;
+(function () {
+  alert(a);
+})();"
+    </pre>
+
+</h4>
+
+<h6>
+    output - 12
+    <br>
+    Ans - It is called self invoking or iife (Immedidate invoking function Execution) firstly will find inside block scope if not in then will find global and then print 12
+</h6>
+
+
+<br>
+
+<h4>Question 7 - 
+
+    <pre>
+ "var a = 10;
+var x = (function () {
+  var a = 12;
+  return function () {
+    alert(a);
+  };
+})();
+x();"
+    </pre>
+</h4>
+
+<h6>output - 12
+<br>
+Ans - in this code we declare and itnitialize a =10 and a self invoking function assign in a variable in this self 
+invoking function scope itnitialize a variable with same name a  and return a function then alert a take a value from closure variable
+from self invoking scope and print a =12   this is the example of closure and first class function
+
+</h6>
+
+
+<br>
+
+<h4>Question 8 - 
+
+    <pre>
+
+ "var globalVar = ""xyz"";
+
+(function outerFunc(outerArg) {
+    var outerVar = 'a';
+    
+    (function innerFunc(innerArg) {
+    var innerVar = 'b';
+    
+    console.log(
+        "outerArg = " + outerArg + "\n" +
+        "innerArg = " + innerArg + "\n" +
+        "outerVar = " + outerVar + "\n" +
+        "innerVar = " + innerVar + "\n" +
+        "globalVar = " + globalVar);
+    
+    })(456);
+})(123);"
+    </pre>
+</h4>
+
+<h6>Output - outerArg = 123
+    innerArg = 456
+    outerVar = a
+    innerVar = b
+    globalVar = xyz
+
+<br>
+Ans -  In this code there are two self invoking function and call and take an argument and both function have parameter
+and declare a variable in their scope ist have outerVar=a and 2nd have innerVar=b and their parameter outerArg=123 and innerArg= 456
+and global var =xyz will print
+</h6>
+</body>
+</html>
